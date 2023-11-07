@@ -97,12 +97,14 @@
 
 
                 @auth
+                @if(auth()->user()->id == $user->id)
                 <div class="p-2">
                     <form action="/logout" method="POST">
                         @csrf
                         <button type="submit" class="p-2 m-1 text-white border-2 border-blue-900 bg-blue-900 rounded-lg dark:text-white dark:border-white">Log Out</button>
                     </form>
-                </div>    
+                </div>  
+                @endif  
                 @endauth
                 
             </div>

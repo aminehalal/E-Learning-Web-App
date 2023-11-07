@@ -92,7 +92,7 @@
                         $userId = $course->teacherId ;
                         $user = \App\Models\User::find($userId);
                     @endphp
-                    <a href="" class="font-bold text-blue-900">{{$user->username}}</a>
+                    <a href="/profile/{{$user->username}}" class="font-bold text-blue-900">{{$user->username}}</a>
                     <h3>{{$course->name}}</h3>
                     <div class="flex flex-col justify-center items-center">
                         @php
