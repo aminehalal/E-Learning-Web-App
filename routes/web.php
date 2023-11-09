@@ -24,6 +24,7 @@ Route::post('/store' , [StudentController::class , 'store']);
 Route::post('/logout' , [StudentController::class , 'logout']);
 Route::get('/profile/{username}' , [StudentController::class , 'find']);
 Route::get('/courses' , [StudentController::class , 'allCourses']);
+Route::get('/course/{id}' , [StudentController::class , 'courseView']);
 
 Route::get('/teacher' , [TeacherController::class , 'index']) ->middleware('isTeacher');
 Route::get('/becomeTeacher' , [TeacherController::class  , 'becomeTeacher'])->middleware('auth');
