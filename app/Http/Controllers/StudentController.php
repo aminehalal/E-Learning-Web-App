@@ -32,6 +32,18 @@ class StudentController extends Controller
         ]);
     }
 
+    public function courseView($id){
+        $course = Course::find($id);
+        if ($course){
+            return view('course_view' , [
+                'course' => $course
+            ]);
+        }
+        else{
+            abort(404);
+        }
+    }
+
     //users
     public function store(Request $request){
         $formRegisterFiled = $request->validate([

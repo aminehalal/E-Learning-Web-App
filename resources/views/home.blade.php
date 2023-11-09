@@ -114,7 +114,7 @@
                             <span>{{$course->rating}}</span>
                         </span>
                     </div>
-                    <a href="#" class="p-2 bg-blue-900 rounded-xl text-white">Enroll Now</a>
+                    <a href="/course/{{$course->id}}" class="p-2 bg-blue-900 rounded-xl text-white">Enroll Now</a>
                 </div>    
                 @endforeach
             </div>

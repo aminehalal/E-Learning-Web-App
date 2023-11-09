@@ -81,7 +81,7 @@
                     <span class="text-blue-900 font-bold dark:text-slate-400">{{$user->adress}}</span>
                 </div>
 
-                @if(auth()->check() && auth()->user()->role == '1')
+                @if(auth()->check() && auth()->user()->role == '1' && auth()->user()->id == $user->id)
                 <div class="p-4">
                     <a href="/teacher" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Teacher's Space</a>
                 </div>
