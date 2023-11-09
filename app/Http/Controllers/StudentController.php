@@ -35,6 +35,7 @@ class StudentController extends Controller
 
     public function courseView($id){
         $course = Course::find($id);
+<<<<<<< HEAD
 
         if ($course){
             $comments =  CourseEtat::where('courseId', $course->id)->get() ;
@@ -64,6 +65,10 @@ class StudentController extends Controller
                 CourseEtat::create($course_etat_form);
             }
             return view('course_watch' , [
+=======
+        if ($course){
+            return view('course_view' , [
+>>>>>>> 8b98f1142acb4d88e04d3a6f84cf01c1d1149c2d
                 'course' => $course
             ]);
         }
@@ -72,6 +77,7 @@ class StudentController extends Controller
         }
     }
 
+<<<<<<< HEAD
     public function courseMarkWatched($id){
         $courseId = $id ;
         $userId = auth()->user()->id ;
@@ -107,6 +113,8 @@ class StudentController extends Controller
         return back();
     }
 
+=======
+>>>>>>> 8b98f1142acb4d88e04d3a6f84cf01c1d1149c2d
     //users
     public function store(Request $request){
         $formRegisterFiled = $request->validate([

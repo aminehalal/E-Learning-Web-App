@@ -52,7 +52,11 @@
 
        <div class="flex flex-col justify-center items-center p-6 font-kanit">
         <div class="flex flex-col justify-center items-center">
+<<<<<<< HEAD
             <a href="/course/{{$course->id}}" class="font bold p-2 border-2 border-blue-900 dark:text-slate-400 dark:border-slate-400 rounded-lg text-blue-900">{{$course->name}}</a>
+=======
+            <h2 class="font bold p-2 border-2 border-blue-900 dark:text-slate-400 dark:border-slate-400 rounded-lg text-blue-900">{{$course->name}}</h2>
+>>>>>>> 8b98f1142acb4d88e04d3a6f84cf01c1d1149c2d
             @php
                 $userId = $course->teacherId ;
                 $user = \App\Models\User::find($userId);
@@ -103,6 +107,7 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
         <a href="/course/{{$course->id}}/watch" class="p-2 m-2 border-2 border-blue-900 rounded-lg text-blue-900 hover:bg-slate-100 duration-700 hover:shadow-xl hover:font-bold ">Go to course</a>
         <div class="bg-slate-100 dark:bg-slate-800 p-4 px-7 shadow-lg m-5 flex flex-col w-48 sm:w-64 md:w-96 justify-center items-center border-2 border-blue-900 rounded-xl ">
             <h5 class="font-bold text-blue-900 dark:text-slate-400">Comments</h5>
@@ -117,6 +122,15 @@
             @endif   
             @endforeach
            
+=======
+        <a href="#" class="p-2 m-2 border-2 border-blue-900 rounded-lg text-blue-900 hover:bg-slate-100 duration-700 hover:shadow-xl hover:font-bold ">Go to course</a>
+        <div class="bg-slate-100 dark:bg-slate-800 p-4 px-7 shadow-lg m-5 flex flex-col w-48 sm:w-64 md:w-96 justify-center items-center border-2 border-blue-900 rounded-xl ">
+            <h5 class="font-bold text-blue-900 dark:text-slate-400">Comments</h5>
+            <div class="flex flex-col justify-center items-center">
+                <span class="py-2"><span class="text-blue-900 font-bold">aminehalal</span> : <span></span>The comment is here bla bla bla (<span class="text-blue-900">22:55:44</span>)</span>
+                <span class="py-2"><span class="text-blue-900 font-bold">aminehalal</span> : <span></span>The comment is here bla bla bla (<span class="text-blue-900">22:55:44</span>)</span>
+            </div>
+>>>>>>> 8b98f1142acb4d88e04d3a6f84cf01c1d1149c2d
         </div>
 
        </div>
