@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\CourseEtat;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -34,14 +35,76 @@ class StudentController extends Controller
 
     public function courseView($id){
         $course = Course::find($id);
+
         if ($course){
+            $comments =  CourseEtat::where('courseId', $course->id)->get() ;
             return view('course_view' , [
+                'course' => $course , 'comments' => $comments
+            ]);
+        }
+        else{
+            abort(404);
+        }
+    }
+
+    public function courseWatch($id){
+        $course = Course::find($id);
+        if ($course){
+            $userId = auth()->user()->id ;
+            $checkCourse = CourseEtat::where('courseId', $id)->where('studentId', $userId)->first();
+            if($checkCourse){
+            }
+            else{
+                $course_etat_form = [
+                    'courseId' => $id,
+                    'teacherId' => $course->teacherId,
+                    'studentId' => $userId,
+                    'etat' => 'En Cours'
+                ];
+                CourseEtat::create($course_etat_form);
+            }
+            return view('course_watch' , [
                 'course' => $course
             ]);
         }
         else{
             abort(404);
         }
+    }
+
+    public function courseMarkWatched($id){
+        $courseId = $id ;
+        $userId = auth()->user()->id ;
+        $courseEtat = CourseEtat::where('courseId' , $courseId)->where('studentId', $userId)->first();
+        if ($courseEtat) {
+            $courseEtat->etat = 'Done';
+            $courseEtat->save();
+        }
+        return back();
+    }
+
+    public function courseRate($id , Request $request){
+        $course = Course::find($id);
+        if ($course){
+            $newRating = $request->input('rating');
+            $lastRating = $course->rating;
+
+            // Calculate the average rating
+            $averageRating = ($lastRating + $newRating) / 2;
+
+            // Update the course with the new average rating
+            $course->update(['rating' => $averageRating]);
+        }
+        return back();
+    }
+
+    public function courseComment($id , Request $request){
+        $userId = auth()->user()->id ;
+        $courseEtat = CourseEtat::where('courseId',$id)->where('studentId' , $userId)->first();
+
+        $comment = $request->input('comment');
+        $courseEtat->update(['comment' => $comment]);
+        return back();
     }
 
     //users

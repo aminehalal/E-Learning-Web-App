@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/course_view.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/course_watch.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="icon" href="{{asset('img/logo_ico.png')}}">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="{{ asset('img/logo_ico.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@500&family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         #menu-list:checked + #nav-list {
@@ -20,7 +20,7 @@
             <nav class="font-kanit ">
                 <div class="flex justify-between items-center mx-1">
                     <a href="/" class="flex justify-center items-center">
-                        <img src="{{asset('img/logo_e_learning.png')}}" class="h-10 ml-3">
+                        <img src="{{ asset('img/logo_e_learning.png') }}" class="h-10 ml-3">
                     </a>
                     <label for="menu-list" class="cursor-pointer sm:hidden mr-6">
                         <svg viewBox="0 0 100 80" width="35" height="40">
@@ -51,80 +51,72 @@
         </header>
 
        <div class="flex flex-col justify-center items-center p-6 font-kanit">
-        <div class="flex flex-col justify-center items-center">
-            <a href="/course/{{$course->id}}" class="font bold p-2 border-2 border-blue-900 dark:text-slate-400 dark:border-slate-400 rounded-lg text-blue-900">{{$course->name}}</a>
-            @php
-                $userId = $course->teacherId ;
-                $user = \App\Models\User::find($userId);
-            @endphp
-            <a href="/profile/{{$user->username}}" class="font-bold text-blue-900 p-2 m-2 dark:text-slate-400">{{$user->username}}</a>
-        
-   
-        </div>
-        <div class="flex justify-center items-center">
-            <img src="{{asset('img/imgCourses/'.$course->image)}}" class="m-5 md:w-96 sm:w-64 w-48 border-2 border-blue-900 rounded-md">
-        </div>
-        <div class="bg-slate-100 dark:bg-slate-800 p-4 px-7 shadow-lg m-5 flex flex-col w-48 sm:w-64 md:w-96 justify-center items-center border-2 border-blue-900 rounded-xl ">
-            <div class="flex flex-col justify-center items-center py-5">
-            <h5 class="font-bold text-blue-900 dark:text-slate-400">Description</h5>
-            <p class="p-2">{{$course->description}}</p>
-            </div>
-                @php
-                    $word = $course->video;
-                    $words = explode(',' , $word);
-                    $num = count($words);
-                    $alltags = $course->tags ;
-                    $tags = explode(',' , $alltags);
-                @endphp
-            <div class="flex flex-col justify-center items-center py-5">
-                <h5 class="font-bold text-blue-900 dark:text-slate-400">Courses</h5>
-                <span class="p-2">{{$num}} Course</span>
-            </div>
-
-            <div class="py-5 justify-center items-center flex flex-col">
-                <h5 class="font-bold text-blue-900 dark:text-slate-400">Category</h5>
-                <a href="#" class="hover:font-bold hover:text-blue-900 duration-700">{{$course->category}}</a>
-            </div>
-            
-            <div class="py-5 justify-center items-center flex flex-col">
-                <h5 class="font-bold text-blue-900 dark:text-slate-400">Tags</h5>
-                <div class="flex justify-center items-center">
-                    @foreach ($tags as $tag)
-                    <a href="#" class="px-2 border-2 border-blue-900 rounded-lg mx-2 hover:font-bold hover:text-blue-900 duration-700 ">{{$tag}}</a>                        
-                    @endforeach
-                </div>
-            </div>
-
-            <div class="py-5 justify-center items-center flex flex-col">
-                <h5 class="font-bold  text-blue-900 dark:text-slate-400">Rating</h5>
-                <div class="flex justify-center items-center">
-                    <img src="{{asset('img/star.png')}}" class="h-4 px-1">
-                    <span class="hover:font-bold hover:text-blue-900 duration-700">{{$course->rating}}</span>
-                </div>
-            </div>
-        </div>
-        <a href="/course/{{$course->id}}/watch" class="p-2 m-2 border-2 border-blue-900 rounded-lg text-blue-900 hover:bg-slate-100 duration-700 hover:shadow-xl hover:font-bold ">Go to course</a>
-        <div class="bg-slate-100 dark:bg-slate-800 p-4 px-7 shadow-lg m-5 flex flex-col w-48 sm:w-64 md:w-96 justify-center items-center border-2 border-blue-900 rounded-xl ">
-            <h5 class="font-bold text-blue-900 dark:text-slate-400">Comments</h5>
-            @foreach ($comments as $comment)
-            @if ($comment->comment)
-            @php
-                $user = \App\Models\User::find($comment->studentId);
-            @endphp
             <div class="flex flex-col justify-center items-center">
-                <span class="py-2"><span class="text-blue-900 font-bold">{{$user->username}}</span> : <span></span>{{$comment->comment}} (<span class="text-blue-900">{{$comment->updated_at}}</span>)</span>
-            </div>  
-            @endif   
+                <a href="/course/{{$course->id}}" class="font bold p-2 border-2 border-blue-900 dark:text-slate-400 dark:border-slate-400 rounded-lg text-blue-900">{{$course->name}}</a>            
+            </div>
+            <div class="flex flex-col justify-center items-center">
+                @php
+                    $userId = auth()->user()->id ;
+                    $courseId = $course->id ;
+                    $courseEtat = \App\Models\CourseEtat::where('studentId' , $userId)->where('courseId',$courseId)->first();
+                @endphp
+                <h2 class="font bold p-4 dark:text-slate-400  rounded-lg text-blue-900">{{$courseEtat->etat}}</h2>            
+            </div>
+            @php
+                $videos = explode(',' , $course->video);
+            @endphp
+            @foreach ($videos as $video)
+            <div class="flex justify-center items-center">
+                <video src="{{ asset('img/video/'.$video ) }}" controls class="m-5 md:w-96 sm:w-64 w-48 border-2 border-blue-900 rounded-md"></video>
+            </div>
             @endforeach
-           
+
+            <div class="p-6">
+                <form action="/course/{{$course->id}}/markWatched" method="POST">
+                    @csrf
+                    <button class="p-3 rounded-lg duration-700 hover:bg-slate-100 hover:font-bold m-1 my-5 border-2 border-blue-900 text-blue-900 ">Mark as finished</button>
+                </form>
+            </div>
+
+            <div class="p-5">
+                <form action="/course/{{$course->id}}/rate" method="post" class="flex flex-col justify-center items-center">
+                    <h3 class="p-2 m-2 border-2 border-blue-900 rounded-lg text-blue-900">My Rating</h3>
+                    @csrf
+                    <select name="rating" class="w-12">
+                        <option value="5">5</option>
+                        <option value="4.5">4.5</option>
+                        <option value="4">4</option>
+                        <option value="3.5">3.5</option>
+                        <option value="3">3</option>
+                        <option value="2.5">2.5</option>
+                        <option value="2">2</option>
+                        <option value="1.5">1.5</option>
+                        <option value="1">1</option>
+                    </select>
+                    <button class="text-blue-900 hover:font-bold duration-500" type="submit">Rate</button>
+                </form>
+            </div>
+
+            
+            <div class="p-5">
+                <form action="/course/{{$course->id}}/comment" method="post" class="flex flex-col justify-center items-center">
+                    <h3 class="p-2 m-2 border-2 border-blue-900 rounded-lg text-blue-900">My Comment</h3>
+                    @csrf
+                    <input type="text" name="comment" class="border-2 border-blue-900 rounded-lg">
+                    <button class="text-blue-900 hover:font-bold duration-500" type="submit">Post</button>
+                </form>
+            </div>
         </div>
 
-       </div>
-        <div>
+
+
+
+
+         <div>
             <footer class="flex justify-between items-center px-6 font-kanit">
                 <div class="flex justify-center items-center">
                     <a href="/" class="flex justify-center items-center m-5">
-                        <img src="{{asset('img/logo_e_learning.png')}}" class="h-8">
+                        <img src="{{ asset('img/logo_e_learning.png') }}" class="h-8">
                     </a>
                 </div>
                 <div>
