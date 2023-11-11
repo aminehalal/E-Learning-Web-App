@@ -67,7 +67,7 @@
             @endphp
             @foreach ($videos as $video)
             <div class="flex justify-center items-center">
-                <video src="{{ asset('img/video/'.$video ) }}" controls class="m-5 md:w-96 sm:w-64 w-48 border-2 border-blue-900 rounded-md"></video>
+                <video src="{{ asset('video/videoCourses/'.$video ) }}" controls class="m-5 md:w-96 sm:w-64 w-48 border-2 border-blue-900 rounded-md"></video>
             </div>
             @endforeach
 

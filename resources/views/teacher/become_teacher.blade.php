@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/become_teacher.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" href="{{asset('img/logo_ico.png')}}">
+    <link rel="icon" href="{{ asset('img/logo_ico.png') }}">
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@500&family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         #menu-list:checked + #nav-list {
@@ -36,7 +36,7 @@
                             <li class="p-1 m-1 border-2 w-20 flex justify-center border-black rounded-md sm:border-0 hover:border-blue-900 duration-700"><a class="hover:text-blue-900 hover:font-bold duration-600 hover:dark:text-black" href="/about">About</a></li>
                             <li class="p-1 m-1 border-2 w-20 flex justify-center border-black rounded-md sm:border-0 hover:border-blue-900 duration-700"><a class="hover:text-blue-900 hover:font-bold duration-600 hover:dark:text-black" href="/contact">Contact</a></li>
                             @auth
-                            <li class="p-1 m-1 bg-blue-900 w-20 flex justify-center border-2 rounded-lg text-white border-black hover:text-black duration-700"><a href="/profile/{{auth()->user()->username}}">{{ auth()->user()->username }}</a></li>
+                            <li class="p-1 m-1 bg-blue-900 w-20 flex justify-center border-2 rounded-lg text-white border-black hover:text-black duration-700"><a href="/profile/{{auth()->user()->username }}">{{ auth()->user()->username }}</a></li>
                             @else    
                             <li class="p-1 m-1 bg-blue-900 w-20 flex justify-center border-2 rounded-lg text-white border-black hover:text-black duration-700"><a href="/login">Login</a></li>
                             @endauth
@@ -50,81 +50,48 @@
             </nav>
         </header>
 
-        <div class="font-kanit grid md:grid-cols-2 grid-cols-1">
+
+        <div class="flex flex-col font-kanit justify-center items-center p-7 h-screen">
+
             <div>
-                <img src="{{ asset('img/student.jpg') }}" class="w-full h-full">
+                <h1 class="font-bold p-2 border-2 border-blue-900 rounded-lg text-blue-900">
+                    Applying to become a teacher
+                </h1>
             </div>
-            <div class="flex flex-col justify-center p-9 items-center">
-                <div class="p-4">
-                    <label for="name">Full Name : </label>
-                    <span class="text-blue-900 font-bold dark:text-slate-400">{{$user->fullname}}</span>
-                </div>
-                <div class="p-4">
-                    <label for="username">Username : </label>
-                    <span class="text-blue-900 font-bold dark:text-slate-400">{{$user->username}}</span>
-                </div>
-                <div class="p-4">
-                    <label for="email">Email : </label>
-                    <span class="text-blue-900 font-bold dark:text-slate-400">{{$user->email}}</span>
-                </div>
-                <div class="p-2">
-                    <label for="birthday">Birthday : </label>
-                    <span class="text-blue-900 font-bold dark:text-slate-400">{{$user->birthday}}</span>
-                </div>
-                
-                <div class="p-2">
-                    <label for="genre">Genere : </label>
-                    <span class="text-blue-900 font-bold dark:text-slate-400 capitalize">{{$user->genre}}</span>
-                </div>
-                <div class="p-4">
-                    <label for="adress">Adress : </label>
-                    <span class="text-blue-900 font-bold dark:text-slate-400">{{$user->adress}}</span>
-                </div>
+            <div>
+                <form action="/profile/{{$user->id}}/becomeTeacherDemande" method="post" enctype="multipart/form-data" class="p-6 flex flex-col justify-center items-center">
+                    @csrf
+                    <input type="hidden" name="teacherId" value="{{$user->id}}" >
+                    <div class="p-2 m-2">
+                        <label for="username" >Username : </label>
+                        <input type="text" name="username" value="{{$user->username}}" class="border-2 border-blue-900 rounded-lg">
+                    </div>
 
-                
-                @auth
-                @if (auth()->check() && auth()->user()->id == $user->id)
-                @php
-                    $teacherDemande = \App\Models\TeacherDemande::where('teacherId' , $user->id)->first();
-                @endphp
-                @if ($teacherDemande->etat == 'Not Yet')
-                <div class="p-4">
-                    <h5 class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">The application to become a teacher is currently being processed.</a>
-                </div>
-                @elseif ($teacherDemande->etat == 'Done')
-                @if(auth()->check() && auth()->user()->role == '1' && auth()->user()->id == $user->id)
-                <div class="p-4">
-                    <a href="/teacher" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Teacher's Space</a>
-                </div>
-                @endif
-                @else
-                <div class="p-4">
-                    <a href="/profile/{{$user->username}}/becomeTeacher" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Become a teacher</a>
-                </div>
-                @endif
-                @endif
-                @endauth
+                    <div class="p-2 m-2">
+                        <label for="teacherCertificate">Teacher certificate (pdf) : </label>
+                        <input type="file" name="certificate" accept=".pdf">
+                    </div>
 
+                    <div class="p-2 m-2 flex justify-center items-center">
+                        <label for="coverletter">Cover Letter :  </label>
+                        <textarea type="text" name="coverLetter" class="border-2 border-blue-900 rounded-lg"></textarea>
+                    </div>
 
-                @auth
-                @if(auth()->user()->id == $user->id)
-                <div class="p-2">
-                    <form action="/logout" method="POST">
-                        @csrf
-                        <button type="submit" class="p-2 m-1 text-white border-2 border-blue-900 bg-blue-900 rounded-lg dark:text-white dark:border-white">Log Out</button>
-                    </form>
-                </div>  
-                @endif  
-                @endauth
-                
+                    <button type="submit" class="text-blue-900 border-2 border-blue-900 p-2 rounded-xl hover:bg-white duration-700">Become a teacher</button>
+                </form>
             </div>
+
         </div>
 
-        <div>
+
+
+
+
+         <div>
             <footer class="flex justify-between items-center px-6 font-kanit">
                 <div class="flex justify-center items-center">
                     <a href="/" class="flex justify-center items-center m-5">
-                        <img src="{{ asset('img/logo_e_learning.png') }}" class="h-8">
+                        <img src="{{asset('img/logo_e_learning.png')}}" class="h-8">
                     </a>
                 </div>
                 <div>
