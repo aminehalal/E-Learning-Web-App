@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('css/become_teacher.css') }}">
+    <link rel="stylesheet" href="{{asset('css/admin_space.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" href="{{ asset('img/logo_ico.png') }}">
+    <link rel="icon" href="{{asset('img/logo_ico.png')}}">
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@500&family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         #menu-list:checked + #nav-list {
@@ -20,7 +20,7 @@
             <nav class="font-kanit ">
                 <div class="flex justify-between items-center mx-1">
                     <a href="/" class="flex justify-center items-center">
-                        <img src="{{ asset('img/logo_e_learning.png') }}" class="h-10 ml-3">
+                        <img src="{{asset('img/logo_e_learning.png')}}" class="h-10 ml-3">
                     </a>
                     <label for="menu-list" class="cursor-pointer sm:hidden mr-6">
                         <svg viewBox="0 0 100 80" width="35" height="40">
@@ -50,44 +50,30 @@
             </nav>
         </header>
 
-
-        <div class="flex flex-col font-kanit justify-center items-center p-7 h-screen">
-
+        <div class="font-kanit grid md:grid-cols-2 grid-cols-1">
             <div>
-                <h1 class="font-bold p-2 border-2 border-blue-900 rounded-lg text-blue-900">
-                    Applying to become a teacher
-                </h1>
+                <img src="{{asset('img/admin.jpg')}}" class="w-full h-full">
             </div>
-            <div>
-                <form action="/profile/{{$user->id}}/becomeTeacherDemande" method="post" enctype="multipart/form-data" class="p-6 flex flex-col justify-center items-center">
-                    @csrf
-                    <input type="hidden" name="teacherId" value="{{$user->id}}" >
-                    <div class="p-2 m-2">
-                        <label for="username" >Username : </label>
-                        <input type="text" name="username" readonly value="{{$user->username}}" class="border-2 border-blue-900 rounded-lg">
-                    </div>
-
-                    <div class="p-2 m-2">
-                        <label for="teacherCertificate">Teacher certificate (pdf) : </label>
-                        <input type="file" name="certificate" accept=".pdf">
-                    </div>
-
-                    <div class="p-2 m-2 flex justify-center items-center">
-                        <label for="coverletter">Cover Letter :  </label>
-                        <textarea type="text" name="coverLetter" class="border-2 border-blue-900 rounded-lg"></textarea>
-                    </div>
-
-                    <button type="submit" class="text-blue-900 border-2 border-blue-900 p-2 rounded-xl hover:bg-white duration-700">Become a teacher</button>
-                </form>
+            <div class="flex flex-col justify-center p-9 items-center">
+                <div class="p-4">
+                    <h1 class="text-2xl font-bold p-2 m-1">Welcome <span class="text-blue-900 dark:text-slate-400">{{auth()->user()->fullname}}</span></h1>
+                </div>
+                <div class="p-4">
+                    <a href="/admin/teacherRequest" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Teacher Requests</a>
+                </div>
+                <div class="p-4">
+                    <a href="#" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">All Students</a>
+                </div>
+                <div class="p-4">
+                    <a href="#" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">All Teachers</a>
+                </div>
+                <div class="p-4">
+                    <a href="#" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">All Courses</a>
+                </div>
             </div>
-
         </div>
 
-
-
-
-
-         <div>
+        <div>
             <footer class="flex justify-between items-center px-6 font-kanit">
                 <div class="flex justify-center items-center">
                     <a href="/" class="flex justify-center items-center m-5">

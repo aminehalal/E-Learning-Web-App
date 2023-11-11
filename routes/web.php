@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
@@ -30,8 +31,15 @@ Route::post('/course/{id}/markWatched' , [StudentController::class , 'courseMark
 Route::post('/course/{id}/rate' , [StudentController::class , 'courseRate'])->middleware('auth');
 Route::post('/course/{id}/comment' , [StudentController::class , 'courseComment'])->middleware('auth');
 
-Route::get('/teacher' , [TeacherController::class , 'index']) ->middleware('isTeacher');
 Route::get('/profile/{username}/becomeTeacher' , [TeacherController::class  , 'becomeTeacher'])->middleware('auth');
 Route::post('/profile/{id}/becomeTeacherDemande' , [TeacherController::class  , 'becomeTeacherDemande'])->middleware('auth');
-Route::get('/teacher/addCourse' , [TeacherController::class , 'addCourse'])->middleware('auth');
-Route::post('/teacher/store' , [TeacherController::class , 'store'])->middleware('auth');
+
+Route::get('/teacher/addCourse' , [TeacherController::class , 'addCourse'])->middleware('isTeacher');
+Route::get('/teacher' , [TeacherController::class , 'index']) ->middleware('isTeacher');
+Route::post('/teacher/store' , [TeacherController::class , 'store'])->middleware('isTeacher');
+
+
+Route::get('/admin' , [AdminController::class , 'index']) ->middleware('isAdmin');
+Route::get('/admin/teacherRequest' , [AdminController::class , 'teacherRequest']) ->middleware('isAdmin');
+Route::get('/admin/accept/{id}' , [AdminController::class , 'teacherRequestAccept']) ->middleware('isAdmin');
+Route::get('/admin/deny/{id}' , [AdminController::class , 'teacherRequestDeny']) ->middleware('isAdmin');

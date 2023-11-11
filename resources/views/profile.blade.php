@@ -85,23 +85,35 @@
                 @auth
                 @if (auth()->check() && auth()->user()->id == $user->id)
                 @php
-                    $teacherDemande = \App\Models\TeacherDemande::where('teacherId' , $user->id)->first();
+                    $teacherDemande = \App\Models\TeacherDemande::where('teacherId' , $user->id)->latest()->first();
                 @endphp
-                @if ($teacherDemande->etat == 'Not Yet')
-                <div class="p-4">
-                    <h5 class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">The application to become a teacher is currently being processed.</a>
-                </div>
-                @elseif ($teacherDemande->etat == 'Done')
-                @if(auth()->check() && auth()->user()->role == '1' && auth()->user()->id == $user->id)
-                <div class="p-4">
-                    <a href="/teacher" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Teacher's Space</a>
-                </div>
-                @endif
+                @if ($teacherDemande)
+                    @if ($teacherDemande->etat == 'Not Yet')
+                            <div class="p-4">
+                                <h5 class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">The application to become a teacher is currently being processed.</a>
+                            </div>
+                    @elseif ($teacherDemande->etat == 'Done')
+                    
+                        @if(auth()->check() && auth()->user()->role == '1' && auth()->user()->id == $user->id)
+                            <div class="p-4">
+                                <a href="/teacher" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Teacher's Space</a>
+                            </div>
+                        @else
+                            <div class="p-4">
+                                <a href="/profile/{{$user->username}}/becomeTeacher" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Become a teacher</a>
+                            </div>                
+                        @endif
+                    @endif
                 @else
-                <div class="p-4">
-                    <a href="/profile/{{$user->username}}/becomeTeacher" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Become a teacher</a>
-                </div>
+                            <div class="p-4">
+                                <a href="/profile/{{$user->username}}/becomeTeacher" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Become a teacher</a>
+                            </div>
                 @endif
+                @endif
+                @if (auth()->user()->role == '2')
+                <div class="p-4">
+                    <a href="/admin" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Admin's Space</a>
+                </div>
                 @endif
                 @endauth
 
