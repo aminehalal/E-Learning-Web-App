@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\TeacherDemande;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -37,6 +38,43 @@ class AdminController extends Controller
         $request->update();
                 
         return redirect('/admin/teacherRequest');
+    }
+
+    public function allStudents(){
+        $users = User::all();
+        return view('admin.all_students' , [
+            'users' => $users
+        ]);
+    }
+
+    public function allTeachers(){
+        $users = User::where('role' , 1)->get();
+        return view('admin.all_teachers' , [
+            'users' => $users
+        ]);
+    }
+
+    public function allCourses(){
+        $courses = Course::all();
+        return view('admin.all_courses',[
+            'courses' => $courses
+        ]);
+    }
+
+
+    public function deleteStudent($id){
+        User::destroy($id);
+        return redirect('/admin/allStudents');
+    }
+
+    public function deleteTeacher($id){
+        User::destroy($id);
+        return redirect('/admin/allTeachers');
+    }
+
+    public function deleteCourse($id){
+        Course::destroy($id);
+        return redirect('/admin/allCourses');
     }
 
 }

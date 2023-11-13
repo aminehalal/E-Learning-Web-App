@@ -80,7 +80,7 @@ class TeacherController extends Controller
             $videos = $request->file('video');
 
             foreach($videos as $video){
-                $video->move('/video/videoCourses' , $video->getClientOriginalName());
+                $video->move('video/videoCourses' , $video->getClientOriginalName());
                 $videosName[] = $video->getClientOriginalName() ;
             }
     

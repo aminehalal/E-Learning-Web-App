@@ -110,7 +110,7 @@
                             </div>
                 @endif
                 @endif
-                @if (auth()->user()->role == '2')
+                @if (auth()->user()->role == '2' && auth()->user()->id == $user->id)
                 <div class="p-4">
                     <a href="/admin" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Admin's Space</a>
                 </div>

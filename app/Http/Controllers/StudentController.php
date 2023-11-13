@@ -13,8 +13,12 @@ class StudentController extends Controller
     public function home(){
         $courses = Course::orderBy('created_at', 'desc')->take(4)->get();
 
+        $numOfUsers = User::all()->count();
+        $numOfTeachers = User::where('role' , 1)->count();
+        $numOfCourses = Course::all()->count();
+
         return view('home' ,[
-            'courses'=>$courses
+            'courses'=>$courses , 'numOfUsers' => $numOfUsers , 'numOfTeachers' => $numOfTeachers , 'numOfCourses'=>$numOfCourses
         ]);
     }
 
@@ -27,7 +31,22 @@ class StudentController extends Controller
     }
 
     public function allCourses(){
-        $courses = Course::orderBy('created_at', 'desc')->get();
+        $q = request('q');
+        $tag = request('tag');
+        if($q && $tag){
+            $courses = Course::where('name' , 'like' , '%'.$q.'%')->where('tags' , 'like' , '%'.$tag.'%')->get();
+        }
+        elseif($q){
+            $courses = Course::where('name' , 'like' , '%'.$q.'%')->get();
+        }
+        elseif($tag){
+            $courses = Course::where('tags' , 'like' , '%'.$tag.'%')->get();
+        }
+        else{
+            $courses = Course::orderBy('created_at', 'desc')->get();
+        }
+
+
         return view('courses' , [
             'courses'=>$courses
         ]);

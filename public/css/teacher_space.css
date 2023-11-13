@@ -385,6 +385,10 @@ textarea::placeholder {
 Set the default cursor for buttons.
 */
 
+.capitalize{
+  text-transform: capitalize;
+}
+
 button,
 [role="button"] {
   cursor: pointer;

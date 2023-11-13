@@ -62,13 +62,13 @@
                     <a href="/admin/teacherRequest" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Teacher Requests</a>
                 </div>
                 <div class="p-4">
-                    <a href="#" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">All Students</a>
+                    <a href="/admin/allStudents" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">All Students</a>
                 </div>
                 <div class="p-4">
-                    <a href="#" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">All Teachers</a>
+                    <a href="/admin/allTeachers" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">All Teachers</a>
                 </div>
                 <div class="p-4">
-                    <a href="#" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">All Courses</a>
+                    <a href="/admin/allCourses" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">All Courses</a>
                 </div>
             </div>
         </div>

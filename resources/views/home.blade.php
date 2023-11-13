@@ -61,15 +61,15 @@
                 </div>
                 <div class="flex p-3">
                     <div class="flex flex-col p-1 justify-center items-center">
-                        <span class="font-bold">8K+</span>
+                        <span class="font-bold">{{$numOfUsers}}</span>
                         <h6>Students</h6>
                     </div>
                     <div class="flex flex-col p-1 justify-center items-center">
-                        <span class="font-bold">8K+</span>
+                        <span class="font-bold">{{$numOfTeachers}}</span>
                         <h6>Teacher</h6>
                     </div>
                     <div class="flex flex-col p-1 justify-center items-center">
-                        <span class="font-bold">8K+</span>
+                        <span class="font-bold">{{$numOfCourses}}</span>
                         <h6>Courses</h6>
                     </div>
                 </div>
