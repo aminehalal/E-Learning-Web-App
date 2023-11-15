@@ -91,5 +91,25 @@ class TeacherController extends Controller
     
         return redirect('/')->with('success', 'Course created successfully');
     }
+
+    public function allCourses(){
+        $userId = auth()->user()->id ;
+
+        $courses = Course::where('teacherId' , $userId)->get();
+        return view('teacher.all_courses' , [
+            'courses' => $courses
+        ]);
+    }
+
+    public function deleteCourse($id){
+        $course = Course::find($id);
+        if (auth()->user()->id == $course->teacherId){
+            Course::destroy($id);
+            return redirect('/teacher/AllCourses');
+        }
+        else {
+            abort(404);
+        }
+    }
     
 }

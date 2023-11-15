@@ -57,7 +57,11 @@
                     <p class="p-3">Want to improve shool grades? You neet to study harder with the helpof a great teacher to improve performance at shool</p>
                 </div>
                 <div class="m-2">
+                    @auth
+                    <a href="/courses" class="border-2 p-2 bg-blue-900 text-white rounded-lg">Get Strated</a>
+                    @else
                     <a href="/login" class="border-2 p-2 bg-blue-900 text-white rounded-lg">Get Strated</a>
+                    @endauth
                 </div>
                 <div class="flex p-3">
                     <div class="flex flex-col p-1 justify-center items-center">

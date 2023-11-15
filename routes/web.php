@@ -36,7 +36,9 @@ Route::post('/profile/{id}/becomeTeacherDemande' , [TeacherController::class  , 
 
 //Teacher Field
 Route::get('/teacher/addCourse' , [TeacherController::class , 'addCourse'])->middleware('isTeacher');
+Route::get('/teacher/deleteCourse/{id}' , [TeacherController::class , 'deleteCourse'])->middleware('isTeacher');
 Route::get('/teacher' , [TeacherController::class , 'index']) ->middleware('isTeacher');
+Route::get('/teacher/AllCourses' , [TeacherController::class , 'allCourses']) ->middleware('isTeacher');
 Route::post('/teacher/store' , [TeacherController::class , 'store'])->middleware('isTeacher');
 
 

@@ -56,18 +56,18 @@
                 <div class="flex">
                     <div class="flex flex-col m-1 justify-center items-center">
                         <label for="username" class="">Username</label>
-                        <input type="text" name="username" class="focus:drop-shadow-2xl duration-700 focus:p-1 border-2 rounded-xl">
+                        <input type="text" name="username" value="{{old('username')}}" class="focus:drop-shadow-2xl duration-700 focus:p-1 border-2 rounded-xl">
                     </div>
                     <div class="flex flex-col m-1 justify-center items-center">
                         <label for="fullname">Full Name</label>
-                        <input type="text" name="fullname" class="focus:drop-shadow-2xl duration-700 focus:p-1 border-2 rounded-xl">
+                        <input type="text" name="fullname" value="{{old('fullname')}}" class="focus:drop-shadow-2xl duration-700 focus:p-1 border-2 rounded-xl">
                     </div>
                 </div>
                 @error('username')
                 <span class="text-red-700 text-xs">{{$message}}</span>
                 @enderror
                 @error('fullname')
-                <span class="text-red-700 text-xs">{{$fullname}}</span>
+                <span class="text-red-700 text-xs">{{$message}}</span>
                 @enderror
 
                 <div class="flex">
@@ -80,7 +80,7 @@
                     </div>
                     <div class="flex flex-col m-1 justify-center items-center">
                         <label for="birthday">Birthday</label>
-                        <input type="date" name="birthday" class="focus:drop-shadow-2xl duration-700 focus:p-1 border-2 rounded-xl">
+                        <input type="date" name="birthday" value="{{old('birthday')}}" class="focus:drop-shadow-2xl duration-700 focus:p-1 border-2 rounded-xl">
                     </div>
                 </div>
                 @error('genre')
@@ -91,7 +91,7 @@
                 @enderror
                 <div class="flex flex-col justify-center items-center">
                     <label for="adress">Adress</label>
-                    <input type="text" name="adress" class="focus:drop-shadow-2xl duration-700 focus:p-1 border-2 rounded-xl">
+                    <input type="text" name="adress" value="{{old('adress')}}" class="focus:drop-shadow-2xl duration-700 focus:p-1 border-2 rounded-xl">
                 </div>
                 @error('adress')
                 <span class="text-red-700 text-xs">{{$message}}</span>
@@ -99,7 +99,7 @@
                 <div class="flex">
                     <div class="flex flex-col m-1 justify-center items-center"> 
                         <label for="email">Email</label>
-                        <input type="email" name="email" class="focus:drop-shadow-2xl duration-700 focus:p-1 border-2 rounded-xl">
+                        <input type="email" name="email" value="{{old('email')}}" class="focus:drop-shadow-2xl duration-700 focus:p-1 border-2 rounded-xl">
                     </div>
                     <div class="flex flex-col m-1 justify-center items-center">
                         <label for="password">Password</label>

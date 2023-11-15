@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{asset('css/teacher_space.css')}}">
+    <link rel="stylesheet" href="{{asset('css/teacher_request.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="icon" href="img/logo_ico.png">
+    <link rel="icon" href="{{asset('img/logo_ico.png')}}">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@500&family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -20,7 +20,7 @@
             <nav class="font-kanit ">
                 <div class="flex justify-between items-center mx-1">
                     <a href="/" class="flex justify-center items-center">
-                        <img src="img/logo_e_learning.png" class="h-10 ml-3">
+                        <img src="{{asset('img/logo_e_learning.png')}}" class="h-10 ml-3">
                     </a>
                     <label for="menu-list" class="cursor-pointer sm:hidden mr-6">
                         <svg viewBox="0 0 100 80" width="35" height="40">
@@ -50,31 +50,79 @@
             </nav>
         </header>
 
-        <div class="font-kanit grid md:grid-cols-2 grid-cols-1">
-            <div>
-                <img src="img/teacher.jpg" class="w-full h-full">
-            </div>
-            <div class="flex flex-col justify-center p-9 items-center">
-                <div class="p-4">
-                    <h1 class="text-2xl font-bold p-2 m-1">Welcome <span class="text-blue-900 dark:text-slate-400">{{auth()->user()->username}}</span></h1>
-                </div>
-                <div class="p-4">
-                    <a href="/teacher/AllCourses" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">All Courses</a>
-                </div>
-                <div class="p-4">
-                    <a href="/teacher/addCourse" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Add a course</a>
-                </div>
-                <div class="p-4">
-                    <a href="/teacher/createRoom" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Add a Room</a>
-                </div>
+        <div class="flex flex-col justify-center items-center font-kanit p-6">
+            <div class=" shadow-md sm:rounded-lg px-3">
+                <table class=" w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 ">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                Id
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Category
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Tags
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Image
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Rating
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Description
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($courses as $course)
+                        <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                {{$course->id}}
+                            </th>
+                            <td class="px-6 py-4">
+                                <a href ="/course/{{$course->id}}">
+                                    {{$course->name}}
+                                </a>
+                            </td>
+                            <td class="px-6 py-4 capitalize">
+                                {{$course->category}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{$course->tags}}
+                            </td>
+                            <td class="px-6 py-4 w-20">
+                                <img src="{{asset('img/imgCourses/'.$course->image)}}">
+                            </td>
+                            <td class="px-6 py-4">
+                                {{$course->rating}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{$course->description}}
+                            </td>
+                            <td class="px-6 py-4 flex">
+                                <a href="/teacher/deleteCourse/{{$course->id}}" class="p-2 font-medium text-red-600  hover:underline">Delete</a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
+
 
         <div>
             <footer class="flex justify-between items-center px-6 font-kanit">
                 <div class="flex justify-center items-center">
                     <a href="/" class="flex justify-center items-center m-5">
-                        <img src="img/logo_e_learning.png" class="h-8">
+                        <img src="{{asset('img/logo_e_learning.png')}}" class="h-8">
                     </a>
                 </div>
                 <div>
