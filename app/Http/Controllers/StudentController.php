@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classe;
 use App\Models\Course;
 use App\Models\CourseEtat;
 use App\Models\StudentClass;
@@ -198,6 +199,42 @@ class StudentController extends Controller
         return view('myclasses' , [
             'classesId' => $classesId
         ]);
+    }
+
+    public function joinClass(Request $request){
+        $codeJoining = $request->input('code');
+
+        $userId = auth()->user()->id;
+        $class = Classe::where('code' , $codeJoining)->first();
+        $class->update([
+            'students' => $class->students.','.$userId 
+        ]);
+        $studentClass = StudentClass::where('studentId' , $userId)->first();
+        $studentClass->update([
+            'classesId' => $studentClass->classesId . ',' . $class->id 
+        ]);
+        return back() ;
+    }
+
+    public function exitClass($id){
+        $class = Classe::find($id);
+        $userId = auth()->user()->id ;
+        $students = explode(',' , $class->students);
+        $newStudents = array_diff($students , [$userId]);
+        $newStudents = implode(',' , $newStudents);
+        $class->update([
+            'students' => $newStudents
+        ]);
+
+        $studentClasses = StudentClass::where('studentId' , $userId)->first();
+        $classes = explode(',' , $studentClasses->classesId);
+        $newClasses = array_diff($classes , [$id]);
+        $newClasses = implode(',' , $newClasses);
+        $studentClasses ->update([
+            'classesId' => $newClasses
+        ]);
+
+        return back();
     }
 
 }

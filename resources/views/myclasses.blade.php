@@ -54,6 +54,7 @@
             <div class=" shadow-md sm:rounded-lg px-3">
                 <div class="p-3 m-6 flex justify-center items-center">
                     <form action="/class/join" method="post">
+                        @csrf
                         <input type="text" name="code" placeholder="Write the code of the class here !">
                         <button type="submit" class="text-blue-900 duration-700 hover:font-bold">Join a Class</button>
                     </form>
@@ -108,13 +109,15 @@
                                 $teacher = \App\Models\User::find($class->teacherId);
                             @endphp
                             <td class="px-6 py-4">
-                                {{$teacher->username}}
+                                <a href="/profile/{{$teacher->username}}">
+                                    {{$teacher->username}}
+                                </a>
                             </td>
                             <td class="px-6 py-4 capitalize">
                                 {{$class->description}}
                             </td>
                             <td class="px-6 py-4 flex">
-                                <a href="/exitClass/{{$class->id}}" class="p-2 font-medium text-red-600  hover:underline">Exit</a>
+                                <a href="/class/exit/{{$class->id}}" class="p-2 font-medium text-red-600  hover:underline">Exit</a>
                             </td>
                         </tr>
                         @endif

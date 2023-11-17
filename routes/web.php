@@ -26,6 +26,8 @@ Route::post('/logout' , [StudentController::class , 'logout']);
 Route::get('/profile/{username}' , [StudentController::class , 'find']);
 Route::get('/courses' , [StudentController::class , 'allCourses']);
 Route::get('/myclasses' , [StudentController::class , 'myclasses'])->middleware('auth');
+Route::post('/class/join' , [StudentController::class , 'joinClass'])->middleware('auth');
+Route::get('/class/exit/{id}' , [StudentController::class , 'exitClass'])->middleware('auth');
 Route::get('/course/{id}' , [StudentController::class , 'courseView']);
 Route::get('/course/{id}/watch' , [StudentController::class , 'courseWatch'])->middleware('auth');
 Route::post('/course/{id}/markWatched' , [StudentController::class , 'courseMarkWatched'])->middleware('auth');
