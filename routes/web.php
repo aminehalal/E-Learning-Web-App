@@ -25,6 +25,7 @@ Route::post('/store' , [StudentController::class , 'store']);
 Route::post('/logout' , [StudentController::class , 'logout']);
 Route::get('/profile/{username}' , [StudentController::class , 'find']);
 Route::get('/courses' , [StudentController::class , 'allCourses']);
+Route::get('/myclasses' , [StudentController::class , 'myclasses'])->middleware('auth');
 Route::get('/course/{id}' , [StudentController::class , 'courseView']);
 Route::get('/course/{id}/watch' , [StudentController::class , 'courseWatch'])->middleware('auth');
 Route::post('/course/{id}/markWatched' , [StudentController::class , 'courseMarkWatched'])->middleware('auth');
@@ -36,6 +37,8 @@ Route::post('/profile/{id}/becomeTeacherDemande' , [TeacherController::class  , 
 
 //Teacher Field
 Route::get('/teacher/addCourse' , [TeacherController::class , 'addCourse'])->middleware('isTeacher');
+Route::get('/teacher/createClass' , [TeacherController::class , 'createClass'])->middleware('isTeacher');
+Route::post('/teacher/createClassNow' , [TeacherController::class , 'createClassNow'])->middleware('isTeacher');
 Route::get('/teacher/deleteCourse/{id}' , [TeacherController::class , 'deleteCourse'])->middleware('isTeacher');
 Route::get('/teacher' , [TeacherController::class , 'index']) ->middleware('isTeacher');
 Route::get('/teacher/AllCourses' , [TeacherController::class , 'allCourses']) ->middleware('isTeacher');

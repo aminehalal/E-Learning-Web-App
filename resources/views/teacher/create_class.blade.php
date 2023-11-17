@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{asset('css/teacher_space.css')}}">
+    <link rel="stylesheet" href="{{asset('css/create_class.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="icon" href="img/logo_ico.png">
+    <link rel="icon" href="{{asset('img/logo_ico.png')}}">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cabin:wght@500&family=Kanit:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -20,7 +20,7 @@
             <nav class="font-kanit ">
                 <div class="flex justify-between items-center mx-1">
                     <a href="/" class="flex justify-center items-center">
-                        <img src="img/logo_e_learning.png" class="h-10 ml-3">
+                        <img src="{{asset('img/logo_e_learning.png')}}" class="h-10 ml-3">
                     </a>
                     <label for="menu-list" class="cursor-pointer sm:hidden mr-6">
                         <svg viewBox="0 0 100 80" width="35" height="40">
@@ -50,35 +50,41 @@
             </nav>
         </header>
 
-        <div class="font-kanit grid md:grid-cols-2 grid-cols-1">
-            <div>
-                <img src="img/teacher.jpg" class="w-full h-full">
-            </div>
-            <div class="flex flex-col justify-center p-9 items-center">
-                <div class="p-4">
-                    <h1 class="text-2xl font-bold p-2 m-1">Welcome <span class="text-blue-900 dark:text-slate-400">{{auth()->user()->username}}</span></h1>
+        <div class="flex flex-col justify-center h-screen items-center font-kanit p-6">
+            <div class="shadow-md sm:rounded-lg px-3 flex justify-center items-center">
+               <form action="/teacher/createClassNow" method="post" class="flex flex-col justify-center items-center">
+                @csrf
+                <div class="p-3">
+                    <label for="name" class="m-2">Name</label>
+                    <input type="text" name="name">
                 </div>
-                <div class="p-4">
-                    <a href="/teacher/AllCourses" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">All Courses</a>
+                <input type="hidden" value="{{auth()->user()->id}}" name="teacherId">
+                <div class="p-3">
+                    <label for="description" class="m-2">Description</label>
+                    <input name="description" type="text">
                 </div>
-                <div class="p-4">
-                    <a href="/teacher/addCourse" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Add a course</a>
+
+                <div class="flex p-3">
+                    <label for="code" class="m-2">Code</label>
+                    <div class="m-2 flex flex-col" >
+                        <input type="text" readonly id="code" name="code">
+                        <button id="generateButton" class="text-blue-900 hover:font-bold text-sm">Generate</button>
+                    </div>
                 </div>
-                
-                <div class="p-4">
-                    <a href="/teacher/createClass" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Create a Class</a>
+
+                <div class="flex justify-center">
+                    <button type="submit" class="text-blue-900">Create Class</button>
                 </div>
-                <div class="p-4">
-                    <a href="/teacher/createRoom" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Add a Room</a>
-                </div>
+               </form>
             </div>
         </div>
+
 
         <div>
             <footer class="flex justify-between items-center px-6 font-kanit">
                 <div class="flex justify-center items-center">
                     <a href="/" class="flex justify-center items-center m-5">
-                        <img src="img/logo_e_learning.png" class="h-8">
+                        <img src="{{asset('img/logo_e_learning.png')}}" class="h-8">
                     </a>
                 </div>
                 <div>
@@ -92,6 +98,22 @@
             document.getElementById('darkModeSwitcher').addEventListener('click' , function(){
                 htmlDoc.classList.toggle('dark');
             })
+
+            const generateButton = document.getElementById('generateButton');
+            const code = document.getElementById('code');
+
+            generateButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                let length = 7 ;
+                const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                let randomCode = '';
+
+                for (let i = 0; i < length; i++) {
+                    const randomIndex = Math.floor(Math.random() * characters.length);
+                    randomCode += characters.charAt(randomIndex);
+                }
+                code.value = randomCode ;
+                });
         </script>
     
 </body>

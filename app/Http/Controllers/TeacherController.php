@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Classe;
 use App\Models\Course;
+use App\Models\StudentClass;
 use App\Models\TeacherDemande;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -110,6 +112,34 @@ class TeacherController extends Controller
         else {
             abort(404);
         }
+    }
+
+    public function createClass(){
+        return view('teacher.create_class');
+    }
+
+    public function createClassNow(Request $request){
+        $createClassForm = $request->validate([
+            'name' => 'required',
+            'teacherId' => 'required',
+            'description' => 'required',
+            'code' => 'required|unique:classes'
+        ]);
+        $userId = auth()->user()->id ;
+        $class = Classe::create($createClassForm);
+        // Retrieve the student class for the current user
+        $class->update([
+            'students' => $userId
+        ]);
+        $myClasses = StudentClass::where('studentId', $userId)->first();
+
+        // Update the classesId field
+        if ($myClasses) {
+            $myClasses->update([
+                'classesId' => $myClasses->classesId . ',' . $class->id,
+            ]);
+        }
+        return back();
     }
     
 }

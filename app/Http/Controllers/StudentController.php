@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\CourseEtat;
+use App\Models\StudentClass;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -143,6 +144,9 @@ class StudentController extends Controller
         //Create User
         $user = User::create($formRegisterFiled);
 
+        $studentClassForm['studentId'] =  $user->id;
+        StudentClass::create($studentClassForm);
+
         //Login
         auth() -> login($user);
 
@@ -185,6 +189,15 @@ class StudentController extends Controller
             return abort(404);
         }
 
+    }
+
+    public function myclasses(){
+        $userId = auth()->user()->id ;
+        $classesId = StudentClass::where('studentId' , $userId)->pluck('classesId');
+
+        return view('myclasses' , [
+            'classesId' => $classesId
+        ]);
     }
 
 }
