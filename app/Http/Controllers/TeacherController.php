@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classe;
+use App\Models\ClassPost;
 use App\Models\Course;
 use App\Models\StudentClass;
 use App\Models\TeacherDemande;
@@ -139,6 +140,20 @@ class TeacherController extends Controller
                 'classesId' => $myClasses->classesId . ',' . $class->id,
             ]);
         }
+        return redirect('/class/'.$class->id);
+    }
+
+    public function classLive(Request $request){
+        $classPostForm = $request->validate([
+            'userId' => 'required',
+            'classId' => 'required',
+            'post' => 'required' ,
+            'type' => 'required'
+        ]);
+
+        $classPostForm['post'] = 'https://localhost:3000?room='.$classPostForm['post'].''.rand(1000,9999) ;
+
+        ClassPost::create($classPostForm);
         return back();
     }
     

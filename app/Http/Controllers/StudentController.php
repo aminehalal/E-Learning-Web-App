@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Classe;
+use App\Models\ClassPost;
 use App\Models\Course;
 use App\Models\CourseEtat;
 use App\Models\StudentClass;
@@ -234,6 +235,31 @@ class StudentController extends Controller
             'classesId' => $newClasses
         ]);
 
+        return back();
+    }
+
+    public function classView($id){
+        $class = Classe::find($id);
+        if($class){
+            $posts = ClassPost::where('classId' , $id)->orderBy('created_at', 'desc')->get();
+            return view('classe' , [
+                'class' => $class , 'posts' => $posts
+            ]);
+        }
+        else{
+            abort(404);
+        }
+    }
+
+    public function classPost(Request $request){
+        $classPostForm = $request->validate([
+            'userId' => 'required',
+            'classId' => 'required',
+            'post' => 'required' ,
+            'type' => 'required'
+        ]);
+
+        ClassPost::create($classPostForm);
         return back();
     }
 
