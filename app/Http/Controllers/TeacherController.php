@@ -151,7 +151,7 @@ class TeacherController extends Controller
             'type' => 'required'
         ]);
 
-        $classPostForm['post'] = 'https://localhost:3000?room='.$classPostForm['post'].''.rand(1000,9999) ;
+        $classPostForm['post'] = 'http://localhost:3000?room='.$classPostForm['post'].''.rand(1000,9999) ;
 
         ClassPost::create($classPostForm);
         return back();

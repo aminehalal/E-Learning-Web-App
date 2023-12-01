@@ -103,7 +103,9 @@
                                 {{$class->id}}
                             </th>
                             <td class="px-6 py-4">
-                                {{$class->name}}
+                                <a href="/class/{{$class->id}}">
+                                    {{$class->name}}
+                                </a>
                             </td>
                             @php
                                 $teacher = \App\Models\User::find($class->teacherId);
