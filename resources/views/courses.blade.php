@@ -17,7 +17,7 @@
     <title>MIT Learning</title>
 </head>
     <body class="bg-blue-100 dark:bg-slate-800 dark:text-white">
-        <header class="dark:bg-blue-900 bg-white dark:text-white sticky top-0 drop-shadow-xl p-5 sm:p-0">
+        <header class="nav-bar-courses dark:bg-blue-900 bg-white dark:text-white sticky top-0 drop-shadow-xl p-5 sm:p-0">
             <nav class="font-kanit ">
                 <div class="flex justify-between items-center mx-1">
                     <a href="/" class="flex justify-center items-center">
@@ -75,7 +75,7 @@
                 </div>
                 <div class="grid md:grid-cols-4 grid-cols-2 p-7">
                     @foreach ($courses as $course)
-                    <div class="flex flex-col p-2 border-blue-900 m-2 hover:shadow-2xl duration-700 justify-center items-center border-2 rounded-md">
+                    <div class="flex flex-col p-2 border-blue-900 m-2 hover:shadow-2xl duration-700 justify-center items-center border-2 rounded-md course-view">
                         <img src="{{asset('img/imgCourses/'.$course->image)}}" class="rounded-md">
                         @php
                             $userId = $course->teacherId ;

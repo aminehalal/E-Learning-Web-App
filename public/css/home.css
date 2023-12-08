@@ -797,7 +797,13 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(30 64 175 / var(--tw-bg-opacity));
 }
-
+.course-view:hover{
+  transform: scale(1.05);
+  transition-duration: 600ms;
+}
+.nav-bar-home{
+  z-index: 100;
+}
 .p-3 {
   padding: 0.75rem;
 }

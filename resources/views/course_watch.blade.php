@@ -16,7 +16,7 @@
     <title>MIT Learning</title>
 </head>
     <body class="bg-blue-100 dark:bg-slate-800 dark:text-white">
-        <header class="dark:bg-blue-900 bg-white dark:text-white sticky top-0 drop-shadow-xl p-5 sm:p-0">
+        <header class="nav-bar dark:bg-blue-900 bg-white dark:text-white sticky top-0 drop-shadow-xl p-5 sm:p-0">
             <nav class="font-kanit ">
                 <div class="flex justify-between items-center mx-1">
                     <a href="/" class="flex justify-center items-center">
