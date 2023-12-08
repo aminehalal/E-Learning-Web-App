@@ -92,6 +92,22 @@ abbr:where([title]) {
   z-index: 100;
 }
 
+.course-watch {
+
+}
+
+.rate-button {
+  border: 2px solid rgb(30 58 138);
+  border-radius: 15px;
+  background-color: white;
+  padding: 6px;
+  margin: 8px;
+}
+
+.text-2xl {
+  font-size: 1.5rem; /* 24px */
+  line-height: 2rem; /* 32px */
+}
 /*
 Remove the default font size and weight for headings.
 */

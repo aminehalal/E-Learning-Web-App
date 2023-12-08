@@ -50,11 +50,11 @@
             </nav>
         </header>
 
-        <div class="font-kanit flex flex-col justify-center items-center p-9">
+        <div class="font-kanit flex flex-col justify-center items-center p-9 form-add">
             <form action="/teacher/store" method="POST" class="flex flex-col justify-center items-center border-2 border-blue-900 dark:border-white m-2 p-5 rounded-xl border-dashed" enctype="multipart/form-data">
                 @csrf
             <div class="flex flex-col justify-center items-center">
-                <label for="name" class="p-2">Name</label>
+                <label for="name" class="title p-2">Name</label>
                 <input type="text" name="name">
             </div>
             @error('username')
@@ -62,14 +62,14 @@
             @enderror
             <input type="hidden" name="teacherId" value="{{auth()->user()->id}}">
             <div class="flex flex-col justify-center items-center">
-                <label for="description" class="p-2">Description</label>
+                <label for="description" class="p-2 title">Description</label>
                 <textarea name="description" cols="" rows="2"></textarea>
             </div>
             @error('description')
             <span class="text-red-700 text-xs">{{$message}}</span>
             @enderror
             <div class="flex flex-col justify-center items-center">
-                <label for="category" class="p-2">Category</label>
+                <label for="category" class="p-2 title">Category</label>
                 <select name="category">
                     <option value="Web/Mobile Develempent">Web/Mobile Development</option>
                     <option value="Design">Design</option>
@@ -81,22 +81,28 @@
             <span class="text-red-700 text-xs">{{$message}}</span>
             @enderror
             <div class="flex flex-col justify-center items-center">
-                <label for="tags" class="p-2">Tags</label>
+                <label for="tags" class="p-2 title">Tags</label>
                 <input type="text" name="tags">
             </div>
             @error('tags')
             <span class="text-red-700 text-xs">{{$message}}</span>
             @enderror
             <div class="flex flex-col justify-center items-center">
-                <label for="image" class="p-2">Image</label>
-                <input type="file" class="" name="image" accept="image/*">
+                <label for="image" class="p-2 title">Image</label>
+                <label for="input-image" class="label-input flex justify-center items-center" id="file-label">
+                    <img src="{{asset('img/upload-logo.png')}}" class="logo-upload">
+                    Select The Image</label>
+                <input type="file" class="input-file" id="input-image" name="image" accept="image/*" onchange="updateFileName()">
             </div>
             @error('image')
             <span class="text-red-700 text-xs">{{$message}}</span>
             @enderror
             <div class="flex flex-col justify-center items-center">
-                <label for="video[]" class="p-2">Videos</label>
-                <input type="file"  name="video[]" multiple accept="video/*">
+                <label for="video[]" class="p-2 title">Videos</label>
+                <label for="input-video" class="label-input flex justify-center items-center" id="file-label-video">
+                    <img src="{{asset('img/upload-logo.png')}}" class="logo-upload">
+                    Select The Videos</label>
+                <input type="file"  name="video[]" class="input-file" multiple accept="video/*" id="input-video" onchange="updateFileNameVideo()">
             </div>
             @error('video')
             <span class="text-red-700 text-xs">{{$message}}</span>
@@ -123,6 +129,31 @@
             document.getElementById('darkModeSwitcher').addEventListener('click' , function(){
                 htmlDoc.classList.toggle('dark');
             })
+
+            function updateFileName() {
+                const input = document.getElementById('input-image');
+                const label = document.getElementById('file-label');
+                
+                if (input.files.length > 0) {
+                label.innerText = input.files[0].name;
+                label.classList.add('done-upload');
+                } else {
+                label.innerText = 'Select The Image';
+                label.classList.remove('done-upload');
+                }
+            }
+            function updateFileNameVideo() {
+                const input = document.getElementById('input-video');
+                const label = document.getElementById('file-label-video');
+                
+                if (input.files.length > 0) {
+                label.innerText = input.files[0].name;
+                label.classList.add('done-upload');
+                } else {
+                label.innerText = 'Select The Videos';
+                label.classList.remove('done-upload');
+                }
+            }
         </script>
     
 </body>

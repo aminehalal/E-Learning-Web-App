@@ -97,18 +97,18 @@
 
                     <div class="col-span-4 p-6 m-4 flex flex-col justify-center items-center">
                         <div>
-                            <form action="/class/post" method="POST" class="flex flex-col">
+                            <form action="/class/post" method="POST" class="flex flex-col justify-center items-center">
                                 @csrf
                                 <input type="hidden" name="userId" value="{{auth()->user()->id}}">
                                 <input type="hidden" name="classId" value="{{$class->id}}">
                                 <input type="hidden" name="type" value="post">
-                                <input type="text" name="post" class="border-2 border-blue-900 p-2">
-                                <button type="submit" class="text-blue-900 m-2 text-lg hover:font-bold duration-700">Post</button>
+                                <input type="text" name="post" class="post-input border-2 border-blue-900 p-2">
+                                <button type="submit" class="post-button text-blue-900 m-2 text-lg hover:font-bold duration-700">Post</button>
                             </form>
 
                         </div>
 
-                        <h1 class="text-blue-900 font-bold text-3xl p-2 m-1">Posts</h1>
+                        <h1 class="text-blue-900 font-bold text-3xl title-posts p-2 m-1">Posts</h1>
                             @foreach ($posts as $post)
                                 
                             <div class="border rounded-md flex flex-col justify-center items-center w-full border-blue-900 p-2 m-2">

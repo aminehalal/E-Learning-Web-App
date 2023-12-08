@@ -912,6 +912,35 @@ video {
   outline-offset: 2px;
 }
 
+.input-file {
+  opacity: 0;
+  width: 0.1px;
+  height: 0.1px;
+}
+
+.label-input {
+  cursor: pointer;
+}
+.no-upload {
+  color: rgb(30 58 138);
+}
+.title {
+  font-weight: 600;
+  font-size: large;
+}
+.done-upload{
+  color: rgb(30 58 138);
+  font-weight: 600;
+}
+
+.logo-upload {
+  width: 2rem;
+  padding: 5px;
+}
+.form-add {
+  padding: 5px 4rem 5px 4rem;
+}
+
 .focus\:drop-shadow-2xl:focus {
   --tw-drop-shadow: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);

@@ -57,7 +57,7 @@
                 <div class="flex">
                     <div class="flex flex-col m-1 justify-center items-center">
                         <label for="username" class="">Username</label>
-                        <input type="text" name="username" class="focus:drop-shadow-2xl duration-700 focus:p-1 border-2 rounded-xl">
+                        <input placeholder="Your username !" type="text" name="username" class="focus:drop-shadow-2xl duration-700 username border-2 rounded-xl">
                     </div>
                 </div>
                 @error('username')
@@ -66,7 +66,7 @@
                 <div class="flex">
                     <div class="flex flex-col m-1 justify-center items-center">
                         <label for="password">Password</label>
-                        <input type="password" name="password" class="focus:drop-shadow-2xl duration-700 focus:p-1 border-2 rounded-xl">
+                        <input placeholder="Your password !" type="password" name="password" class="focus:drop-shadow-2xl duration-700 password border-2 rounded-xl">
                     </div>
                 </div>
                 @error('password')

@@ -851,6 +851,11 @@ video {
   }
 }
 
+.input-signup:focus {
+  transform: scale(1.1);
+  transition-duration: 500ms;
+}
+
 @media (min-width: 940px) {
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -759,9 +759,13 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
+.course-view{
+  opacity: 0.8;
+}
 
 .course-view:hover{
   transform: scale(1.08);
+  opacity: 1;
   transition-duration: 600ms;
 }
 .nav-bar-courses{

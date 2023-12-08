@@ -51,7 +51,7 @@
         </header>
 
         <div class="flex flex-col justify-center h-screen items-center font-kanit p-6">
-            <div class="shadow-md sm:rounded-lg px-3 flex justify-center items-center">
+            <div class="shadow-md sm:rounded-lg px-3 flex justify-center items-center create-class-div">
                <form action="/teacher/createClassNow" method="post" class="flex flex-col justify-center items-center">
                 @csrf
                 <div class="p-3">
@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="flex justify-center">
-                    <button type="submit" class="text-blue-900">Create Class</button>
+                    <button type="submit" class="text-blue-900 create-class">Create Class</button>
                 </div>
                </form>
             </div>

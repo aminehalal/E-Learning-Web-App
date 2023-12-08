@@ -67,7 +67,7 @@
             @endphp
             @foreach ($videos as $video)
             <div class="flex justify-center items-center">
-                <video src="{{ asset('video/videoCourses/'.$video ) }}" controls class="m-5 md:w-96 sm:w-64 w-48 border-2 border-blue-900 rounded-md"></video>
+                <video src="{{ asset('video/videoCourses/'.$video ) }}" controls class="course-watch m-5 md:w-96 sm:w-64 w-48 border-2 border-blue-900 rounded-md"></video>
             </div>
             @endforeach
 
@@ -80,7 +80,7 @@
 
             <div class="p-5">
                 <form action="/course/{{$course->id}}/rate" method="post" class="flex flex-col justify-center items-center">
-                    <h3 class="p-2 m-2 border-2 border-blue-900 rounded-lg text-blue-900">My Rating</h3>
+                    <h3 class="p-2 m-2 text-2xl font-bold text-blue-900">My Rating</h3>
                     @csrf
                     <select name="rating" class="w-12">
                         <option value="5">5</option>
@@ -93,17 +93,17 @@
                         <option value="1.5">1.5</option>
                         <option value="1">1</option>
                     </select>
-                    <button class="text-blue-900 hover:font-bold duration-500" type="submit">Rate</button>
+                    <button class="text-blue-900 hover:font-bold duration-500 rate-button" type="submit">Rate</button>
                 </form>
             </div>
 
             
             <div class="p-5">
                 <form action="/course/{{$course->id}}/comment" method="post" class="flex flex-col justify-center items-center">
-                    <h3 class="p-2 m-2 border-2 border-blue-900 rounded-lg text-blue-900">My Comment</h3>
+                    <h3 class="p-2 m-2 text-blue-900 text-2xl font-bold">My Comment</h3>
                     @csrf
                     <input type="text" name="comment" class="border-2 border-blue-900 rounded-lg">
-                    <button class="text-blue-900 hover:font-bold duration-500" type="submit">Post</button>
+                    <button class="text-blue-900 hover:font-bold duration-500 rate-button" type="submit">Post</button>
                 </form>
             </div>
         </div>

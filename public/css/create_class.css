@@ -728,6 +728,21 @@ video {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
+.create-class {
+  border: 2px solid rgb(30 58 138);
+  padding: 5px;
+  border-radius: 10px;
+}
+.create-class:hover{
+  background-color: white;
+  transition-property: all;
+  transition-duration: 600ms;
+}
+.create-class-div {
+  padding: 20px;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.5), 0 10px 20px 0 rgba(0, 0, 0, 0.5);
+}
+
 .duration-700 {
   transition-duration: 700ms;
 }
