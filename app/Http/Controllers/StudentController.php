@@ -48,10 +48,10 @@ class StudentController extends Controller
         else{
             $courses = Course::orderBy('created_at', 'desc')->get();
         }
-
+        $numOfCourses = count($courses);
 
         return view('courses' , [
-            'courses'=>$courses
+            'courses'=>$courses , 'numOfCourses'=>$numOfCourses
         ]);
     }
 

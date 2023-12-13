@@ -73,6 +73,7 @@
                 <div class="flex justify-center items-center">
                     <h1 class="text-3xl font-bold p-2 mt-5">All Courses</h1>
                 </div>
+                @if ($numOfCourses >= 1)
                 <div class="grid md:grid-cols-4 grid-cols-2 p-7">
                     @foreach ($courses as $course)
                     <div class="flex flex-col p-2 border-blue-900 m-2 hover:shadow-2xl duration-700 justify-center items-center border-2 rounded-md course-view">
@@ -107,6 +108,12 @@
                     </div>    
                     @endforeach
                 </div>
+                @else
+                <div class="flex justify-center items-center">
+                    <h1 class="no-course">There are no courses found.</h1>
+                </div>
+                @endif
+
             </div>
         </div>
 
