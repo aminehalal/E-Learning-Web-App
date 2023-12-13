@@ -49,7 +49,9 @@
                 </div>
             </nav>
         </header>
-
+        <div class="pop-up font-kanit" id="popup">
+            <p class="pop-up-message" id="popup-message">User create succudfully !</p>
+        </div>
         <div class="grid md:grid-cols-2 font-kanit">
             <div class="flex flex-col justify-center items-center p-24">
                 <div>
@@ -142,6 +144,34 @@
             document.getElementById('darkModeSwitcher').addEventListener('click' , function(){
                 htmlDoc.classList.toggle('dark');
             })
+
+            // Check if there is a message in the session
+            var message = '{{ session("message") }}';
+
+            // Display the pop-up if a message is present
+            if (message) {
+                showPopup(message);
+            }
+
+            function showPopup(message) {
+                var popup = document.getElementById('popup');
+                var popupMessage = document.getElementById('popup-message');
+                
+                // Set the message content
+                popupMessage.innerHTML = message;
+
+                // Show the pop-up with animation
+                popup.style.display = 'block';
+                popup.style.opacity = 1;
+
+                // Hide the pop-up after 5 seconds
+                setTimeout(function() {
+                popup.style.opacity = 0;
+                setTimeout(function() {
+                    popup.style.display = 'none';
+                }, 500);
+                }, 5000);
+            }
         </script>
     
 </body>

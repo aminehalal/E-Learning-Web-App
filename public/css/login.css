@@ -649,6 +649,25 @@ video {
   transition-duration: 500ms;
 }
 
+
+.pop-up {
+  display: none;
+  position: absolute;
+  top:  0;
+  left: 50%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  line-height: 1.2rem;
+  transform: translateX(-50%);
+  background-color:  #DBEAFE ;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+  border: 2px solid  rgb(30 58 138);
+  border-radius: 20px;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
 .password:focus{
   transform: scale(1.1);
   transition-duration: 500ms;
