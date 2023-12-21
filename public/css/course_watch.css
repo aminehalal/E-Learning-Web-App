@@ -92,9 +92,30 @@ abbr:where([title]) {
   z-index: 100;
 }
 
-.course-watch {
-
+.video-att {
+  margin-bottom: 0.5rem;
+  cursor: pointer;
 }
+
+.video-plays {
+  height: 33rem;
+  width: 50rem;
+  background-color: black;
+  margin: 1.5rem;
+}
+
+
+
+
+.w-28 {
+  width: 7rem;
+}
+
+.h-videos {
+  overflow:auto;
+  padding: 0.3rem;
+}
+
 
 .rate-button {
   border: 2px solid rgb(30 58 138);
@@ -849,5 +870,25 @@ video {
 @media (min-width: 940px) {
   .md\:w-96 {
     width: 44rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .flex-row-vd{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .flex-col-vd {
+    display: flex;
+    flex-direction: column;
+  }
+  .h-videos {
+    height: 20rem;
+    overflow:auto;
+    padding: 0.3rem;
+  }
+  .md\:block {
+    display: block;
   }
 }

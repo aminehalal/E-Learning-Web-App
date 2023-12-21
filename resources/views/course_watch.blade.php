@@ -51,7 +51,7 @@
         </header>
 
        <div class="flex flex-col justify-center items-center p-6 font-kanit">
-            <div class="flex flex-col justify-center items-center">
+            <div class="flex justify-center items-center">
                 <a href="/course/{{$course->id}}" class="font bold p-2 border-2 border-blue-900 dark:text-slate-400 dark:border-slate-400 rounded-lg text-blue-900">{{$course->name}}</a>            
             </div>
             <div class="flex flex-col justify-center items-center">
@@ -65,12 +65,35 @@
             @php
                 $videos = explode(',' , $course->video);
             @endphp
-            @foreach ($videos as $video)
-            <div class="flex justify-center items-center">
-                <video src="{{ asset('video/videoCourses/'.$video ) }}" controls class="course-watch m-5 md:w-96 sm:w-64 w-48 border-2 border-blue-900 rounded-md"></video>
+            @if(count($videos) > 1)
+            <div class="flex flex-col flex-row-vd justify-center items-center">
+                <div class="flex">
+                    <video id="video-active" src="{{ asset('video/videoCourses/'.$videos[0]) }}" class="video-plays" controls></video>
+                </div>
+                <div>
+                    <h1 class="p-3 text-2xl font-bold flex justify-center items-center">All videos</h1>
+                    <div class="flex flex-row flex-col-vd justify-center h-videos items-center">
+                        <h1 class="p-3 text-xl hidden md:block">All</h1>
+                        @foreach ($videos as $key => $video)
+                            <div class="flex justify-center items-center w-28">
+                                <video
+                                    id="video-att-{{ $key }}"
+                                    src="{{ asset('video/videoCourses/'.$video) }}"
+                                    class="active video-att  border-2 border-blue-900 rounded-md"
+                                    onclick="changeMainVideo('{{ asset('video/videoCourses/'.$video) }}')"
+                                ></video>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
-            @endforeach
-
+            @else
+            <div class="flex justify-center items-center">
+                <div class="flex">
+                    <video id="video-active" src="{{ asset('video/videoCourses/'.$videos[0]) }}" class="video-plays" controls></video>
+                </div> 
+            </div>
+            @endif
             <div class="p-6">
                 <form action="/course/{{$course->id}}/markWatched" method="POST">
                     @csrf
@@ -130,6 +153,13 @@
             document.getElementById('darkModeSwitcher').addEventListener('click' , function(){
                 htmlDoc.classList.toggle('dark');
             })
+
+            function changeMainVideo(videoSrc) {
+                var mainVideo = document.getElementById('video-active');
+                mainVideo.src = videoSrc;
+                mainVideo.load(); // Load the new video source
+                mainVideo.play(); // Start playing the new video
+            }
         </script>
     
 </body>
