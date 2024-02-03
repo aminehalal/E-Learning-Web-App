@@ -15,6 +15,7 @@
         }
     </style>
     <title>MIT Learning</title>
+    @livewireStyles
 </head>
     <body class="bg-blue-100 dark:bg-slate-800 dark:text-white">
         <header class="nav-bar-courses dark:bg-blue-900 bg-white dark:text-white sticky top-0 drop-shadow-xl p-5 sm:p-0">
@@ -51,7 +52,9 @@
             </nav>
         </header>
 
-        <div class="font-kanit p-5">
+        @livewire('course-search')
+
+        {{-- <div class="font-kanit p-5">
             <div class="px-16 sm:px-44 md:px-64">                
                 <form method="GET">   
                     <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
@@ -115,7 +118,7 @@
                 @endif
 
             </div>
-        </div>
+        </div> --}}
 
         <div>
             <footer class="flex justify-between items-center px-6 font-kanit">
@@ -136,6 +139,6 @@
                 htmlDoc.classList.toggle('dark');
             })
         </script>
-    
+    @livewireScripts
 </body>
 </html>
