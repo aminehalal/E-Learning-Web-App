@@ -30,7 +30,7 @@
                     $userId = $course->teacherId ;
                     $user = \App\Models\User::find($userId);
                 @endphp
-                <a href="/profile/{{$user->username}}" class="font-bold text-blue-900">{{$user->username}}</a>
+                <a href="/profile/{{$user->username}}" wire:navigate class="font-bold text-blue-900">{{$user->username}}</a>
                 <h3>{{$course->name}}</h3>
                 <div class="flex flex-col justify-center items-center">
                     @php
@@ -44,7 +44,7 @@
                     <a href="#" class="text-blue-900 font-bold">{{$course->category}}</a>
                     <div class="flex justify-center items-center">
                         @foreach ($tags as $tag)
-                        <a href="/courses?tag={{$tag}}" class="p-1 mx-1 bg-blue-800 text-white rounded-lg">{{$tag}}</a>                                    
+                        <a href="/courses?tag={{$tag}}" wire:navigate class="p-1 mx-1 bg-blue-800 text-white rounded-lg">{{$tag}}</a>                                    
                         @endforeach
                     </div>
                     <span class="flex justify-center items-center">
@@ -52,7 +52,7 @@
                         <span>{{$course->rating}}</span>
                     </span>
                 </div>
-                <a href="/course/{{$course->id}}" class="p-2 bg-blue-900 rounded-xl text-white">Enroll Now</a>
+                <a href="/course/{{$course->id}}" wire:navigate class="p-2 bg-blue-900 rounded-xl text-white">Enroll Now</a>
             </div>    
             @endforeach
         </div>

@@ -68,9 +68,9 @@
                 <div class="p-4">
                     <a href="/teacher/createClass" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Create a Class</a>
                 </div>
-                <div class="p-4">
+                {{-- <div class="p-4">
                     <a href="/teacher/createRoom" class="p-2 m-1 text-blue-900 border-2 border-blue-900 rounded-lg dark:text-white dark:border-white">Add a Room</a>
-                </div>
+                </div> --}}
             </div>
         </div>
 

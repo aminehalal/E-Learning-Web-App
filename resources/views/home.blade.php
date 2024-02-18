@@ -14,12 +14,13 @@
         }
     </style>
     <title>MIT Learning</title>
+    @livewireStyles
 </head>
     <body class="bg-blue-100 dark:bg-slate-800 dark:text-white">
         <header class="dark:bg-blue-900 bg-white dark:text-white nav-bar-home sticky top-0 drop-shadow-xl p-5 sm:p-0">
             <nav class="font-kanit ">
                 <div class="flex justify-between items-center mx-1">
-                    <a href="/" class="flex justify-center items-center">
+                    <a href="/" class="flex justify-center items-center" wire:navigate>
                         <img src="img/logo_e_learning.png" class="h-10 ml-3">
                     </a>
                     <label for="menu-list" class="cursor-pointer sm:hidden mr-6">
@@ -32,13 +33,13 @@
                     <input type="checkbox" class="hidden" id="menu-list">
                     <div id="nav-list" class=" m-5 absolute  top-16 right-0 hidden sm:static sm:flex">
                         <ul class="flex flex-col  sm:flex-row justify-center items-center">
-                            <li class="p-1 m-1 border-2 w-20 flex justify-center border-black rounded-md sm:border-0 hover:border-blue-900 duration-700"><a class="hover:text-blue-900 hover:font-bold duration-600 hover:dark:text-black" href="/courses">Courses</a></li>
-                            <li class="p-1 m-1 border-2 w-20 flex justify-center border-black rounded-md sm:border-0 hover:border-blue-900 duration-700"><a class="hover:text-blue-900 hover:font-bold duration-600 hover:dark:text-black" href="/about">About</a></li>
-                            <li class="p-1 m-1 border-2 w-20 flex justify-center border-black rounded-md sm:border-0 hover:border-blue-900 duration-700"><a class="hover:text-blue-900 hover:font-bold duration-600 hover:dark:text-black" href="/contact">Contact</a></li>
+                            <li class="p-1 m-1 border-2 w-20 flex justify-center border-black rounded-md sm:border-0 hover:border-blue-900 duration-700"><a class="hover:text-blue-900 hover:font-bold duration-600 hover:dark:text-black" href="/courses" wire:navigate>Courses</a></li>
+                            <li class="p-1 m-1 border-2 w-20 flex justify-center border-black rounded-md sm:border-0 hover:border-blue-900 duration-700"><a class="hover:text-blue-900 hover:font-bold duration-600 hover:dark:text-black" href="/about" wire:navigate>About</a></li>
+                            <li class="p-1 m-1 border-2 w-20 flex justify-center border-black rounded-md sm:border-0 hover:border-blue-900 duration-700"><a class="hover:text-blue-900 hover:font-bold duration-600 hover:dark:text-black" href="/contact" wire:navigate>Contact</a></li>
                             @auth
-                            <li class="p-1 m-1 bg-blue-900 w-20 flex justify-center border-2 rounded-lg text-white border-black hover:text-black duration-700"><a href="/profile/{{auth()->user()->username }}">{{ auth()->user()->username }}</a></li>
+                            <li class="p-1 m-1 bg-blue-900 w-20 flex justify-center border-2 rounded-lg text-white border-black hover:text-black duration-700"><a href="/profile/{{auth()->user()->username }}" wire:navigate>{{ auth()->user()->username }}</a></li>
                             @else    
-                            <li class="p-1 m-1 bg-blue-900 w-20 flex justify-center border-2 rounded-lg text-white border-black hover:text-black duration-700"><a href="/login">Login</a></li>
+                            <li class="p-1 m-1 bg-blue-900 w-20 flex justify-center border-2 rounded-lg text-white border-black hover:text-black duration-700"><a href="/login" wire:navigate>Login</a></li>
                             @endauth
                         </ul>
                         <div id="darkModeSwitcher" class="p-1 m-1 border-2 cursor-pointer flex border-black w-20 rounded-full">
@@ -60,9 +61,9 @@
                 </div>
                 <div class="m-2">
                     @auth
-                    <a href="/courses" class="border-2 p-2 bg-blue-900 text-white rounded-lg">Get Strated</a>
+                    <a href="/courses" class="border-2 p-2 bg-blue-900 text-white rounded-lg" wire:navigate>Get Strated</a>
                     @else
-                    <a href="/login" class="border-2 p-2 bg-blue-900 text-white rounded-lg">Get Strated</a>
+                    <a href="/login" class="border-2 p-2 bg-blue-900 text-white rounded-lg" wire:navigate>Get Strated</a>
                     @endauth
                 </div>
                 <div class="flex p-3">
@@ -173,6 +174,6 @@
                 }, 5000);
             }
         </script>
-    
+    @livewireScripts
 </body>
 </html>
